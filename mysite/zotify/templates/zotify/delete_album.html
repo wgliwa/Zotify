@@ -1,0 +1,7 @@
+{% extends "zotify/main.html" %}
+{% block content %}
+<form method="post">
+    {% csrf_token %}
+    <button type="submit">Delete Album {{album.name}}</button>
+</form>
+{% endblock content %}

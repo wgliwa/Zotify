@@ -1,0 +1,38 @@
+{% extends "zotify/main.html" %}
+{% block content %}
+<table class="table table-dark">
+    <thead>
+    <tr>
+    <tr>
+        <th colspan="100%">All songs in database:</th>
+    </tr>
+    <th scope="col">#</th>
+    <th scope="col">Title</th>
+    <th scope="col">Duration</th>
+    <th scope="col">Album</th>
+    <th scope="col">Artist</th>
+    <th scope="col">Add</th>
+    {% if user.is_superuser %}
+    <th scope="col">Edit</th>
+    <th scope="col">Delete</th>
+    {% endif %}
+    </tr>
+    </thead>
+    <tbody>
+    {% for i in songs %}
+    <tr>
+        <th scope="row">{{forloop.counter}}</th>
+        <td>{{i.title}}</td>
+        <td>{{i.duration}}</td>
+        <td>{{i.album}}</td>
+        <td>{{i.artist}}</td>
+        <td><a href="/add_song_to_playlist/{{i.id}}">add</a></td>
+        {% if user.is_superuser %}
+        <td><a href="/edit_song/{{i.id}}/"> edit</a></td>
+        <td><a href="#"> delete</a></td>
+        {% endif %}
+    </tr>
+    {% endfor %}
+    </tbody>
+</table>
+{% endblock content %}

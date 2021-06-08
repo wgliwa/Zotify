@@ -1,0 +1,9 @@
+{% extends 'zotify/main.html' %}
+{% block content %}
+<h2 style="color: white">Log In</h2>
+<form method="post" style="color: white">
+  {% csrf_token %}
+  {{ form.as_p }}
+  <button type="submit">Log In</button>
+</form>
+{% endblock %}

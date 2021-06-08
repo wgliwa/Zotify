@@ -1,0 +1,39 @@
+{% extends "zotify/main.html" %}
+{% block content %}
+<table class="table table-dark">
+    <thead>
+        <tr>
+        <th colspan="100%">Members of {{artist.0.artist.name}}:</th>
+    </tr>
+    <tr>
+        <th scope="col">#</th>
+        <th scope="col">Name</th>
+        <th scope="col">Surname</th>
+        <th scope="col">Pseudonym</th>
+        <th scope="col">Age</th>
+        <th scope="col">Role</th>
+        {% if user.is_superuser %}
+        <th scope="col">Edit</th>
+        <th scope="col">Remove</th>
+        {% endif %}
+    </tr>
+    </thead>
+    <tbody>
+    {% for i in artist %}
+    <tr>
+        <th scope="row">{{forloop.counter}}</th>
+        <td>{{i.member.name}}</td>
+        <td>{{i.member.surname}}</td>
+        <td>{{i.member.pseudonym}}</td>
+        <td>{{i.member.age}}</td>
+        <td>{{i.member.role}}</td>
+        {% if user.is_superuser %}
+        <td><a href="/edit_member/{{i.id}}/"> edit</a></td>
+        <td><a href="/delete_member_from_band/{{i.id}}/"> remove</a></td>
+        {% endif %}
+    </tr>
+    {% endfor %}
+    </tbody>
+</table>
+
+{% endblock content %}

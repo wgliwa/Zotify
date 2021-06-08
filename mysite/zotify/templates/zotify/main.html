@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+    <title>Zotify</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    {% load static %}
+    <link rel="stylesheet" type="text/css" href="{% static 'zotify/main.css' %}">
+
+</head>
+<nav class="navbar navbar-light" style="background-color: #a8323e;">
+    <form class="form-inline">
+        <a href="{% url 'zotify-home'%}" class="btn btn-dark" role="button">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                 class="bi bi-house-door-fill" viewBox="0 0 16 16">
+                <path d="M6.5 14.5v-3.505c0-.245.25-.495.5-.495h2c.25 0 .5.25.5.5v3.5a.5.5 0 0 0 .5.5h4a.5.5 0 0 0 .5-.5v-7a.5.5 0 0 0-.146-.354L13 5.793V2.5a.5.5 0 0 0-.5-.5h-1a.5.5 0 0 0-.5.5v1.293L8.354 1.146a.5.5 0 0 0-.708 0l-6 6A.5.5 0 0 0 1.5 7.5v7a.5.5 0 0 0 .5.5h4a.5.5 0 0 0 .5-.5z"/>
+            </svg>
+        </a>
+        <a href="{% url 'albums'%}" class="btn btn-dark" role="button">ALBUMS</a>
+        <a href="{% url 'artists'%}" class="btn btn-dark" role="button">BANDS</a>
+        <a href="{% url 'genres'%}" class="btn btn-dark" role="button">GENRES</a>
+        {% if user.is_authenticated %}
+        <a href="/playlists/" class="btn btn-dark" role="button">PUBLIC PLAYLISTS</a>
+        <a href="/playlists/{{user.id}}/" class="btn btn-dark" role="button">MY PLAYLISTS</a>
+        {% endif %}
+        <a href="{% url 'members' %}" class="btn btn-dark" role="button">MEMBERS</a>
+        <a href="{% url 'roles'%}" class="btn btn-dark" role="button">ROLES</a>
+        <a href="{% url 'songs'%}" class="btn btn-dark" role="button">SONGS</a>
+        {% if user.is_authenticated %}
+        <a href="{% url 'profile_list' %}" class="btn btn-dark" role="button">USERS</a>
+        <div class="dropdown">
+            <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton"
+                    data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                Add something
+            </button>
+            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                <a class="dropdown-item" href="{% url 'album_form'%}">Album</a>
+                <a class="dropdown-item" href="{% url 'genre_form'%}">Genre</a>
+                <a class="dropdown-item" href="{% url 'song_form'%}">Song</a>
+                <a class="dropdown-item" href="{% url 'add_playlist' %}">Playlist</a>
+                <a class="dropdown-item" href="{% url 'add_member' %}">Member</a>
+                <a class="dropdown-item" href="{% url 'add_role' %}">Role</a>
+                <a class="dropdown-item" href="{% url 'add_band' %}">Band</a>
+            </div>
+        </div>
+        {% endif %}
+    </form>
+    <div>
+
+        {% if user.is_authenticated %}
+        <a href="/profile_page/{{user.id}}/" class="btn btn-dark" role="button">MY PROFILE</a>
+        Logged in as {{ user.username }}
+        <a href="{% url 'logout'%}" class="btn btn-dark" role="button">LOG OUT</a>
+        {% else %}
+        <a href="{% url 'signup'%}" class="btn btn-dark" role="button">REGISTER</a>
+        You are not logged in
+        <a href="{% url 'login'%}" class="btn btn-dark" role="button">LOG IN</a>
+        {% endif %}
+    </div>
+</nav>
+
+<body class="bg-color">
+{% block content %}
+<br/><br/><br/><br/><br/><br/>
+<img src="{% static 'zotify/logo.png' %}" class="imag">
+{% endblock content %}
+</body>
+</html>

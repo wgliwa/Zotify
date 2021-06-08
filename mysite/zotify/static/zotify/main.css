@@ -1,0 +1,11 @@
+.bg-color {
+background: rgb(52, 58, 64) !important;
+}
+.imag {
+    margin: 10px auto 20px;
+    display: block;
+    max-width: 1200px;
+}
+.bg-primary {
+    background-color: #007bff!important;
+}

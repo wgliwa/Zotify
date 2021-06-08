@@ -1,0 +1,15 @@
+{% extends "zotify/main.html" %}
+{% block content %}
+{% load static %}
+<link rel="stylesheet" type="text/css" href="{% static 'zotify/profile.css' %}">
+
+<ul>
+    <img src="{{profile.image.url}}" class="imag">
+    <li>Nickname: {{profile.user}}</li>
+    <li>Creation time: {{profile.create_time}}</li>
+    <li>Bio: <br/> {{profile.bio}}</li>
+
+
+</ul>
+
+{% endblock content %}

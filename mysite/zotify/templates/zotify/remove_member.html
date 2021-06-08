@@ -1,0 +1,7 @@
+{% extends "zotify/main.html" %}
+{% block content %}
+<form method="post">
+    {% csrf_token %}
+    <button type="submit">Remove member}</button>
+</form>
+{% endblock content %}

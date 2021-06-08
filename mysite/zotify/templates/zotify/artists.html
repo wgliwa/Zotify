@@ -1,0 +1,31 @@
+{% extends "zotify/main.html" %}
+{% block content %}
+<div class="row">
+    {% for i in artist_list %}
+    <div class="col-lg-3 col-md-6 py-3">
+        <div class="card mb-3" style="max-width: 300px;">
+            <img class="card-img-top" src="{{i.cover.url}}" style="height: 300px;">
+            <div class="card-body">
+                <h5 class="card-title">{{i.name}}</h5>
+                <ul style="list-style-type:none">
+                    <li>Formed in: {{i.formed_in}}</li>
+                </ul>
+                <p><a href="/artist_details/{{i.id}}/" class="btn btn-dark">Members</a>
+                <a href="{{i.wiki}}" target="_blank" class="btn btn-dark">Wiki</a></p>
+                    {% if user.is_superuser %}
+                 <p><a href="/edit_artist/{{i.id}}/" class="btn btn-dark">Edit</a>
+                    <a href="/delete_artist/{{i.id}}/" class="btn btn-dark">Delete</a></p>
+                {% endif %}
+
+            </div>
+        </div>
+    </div>
+    <!--    <li><a href="/album_details/{{album.id}}/">{{ album.name }}</a></li>-->
+    <!--    <li><img src="{{album.cover.url}}" width="120"/></li>-->
+    {% endfor %}
+</div>
+{% endblock content %}
+
+
+
+

@@ -1,0 +1,28 @@
+{% extends "zotify/main.html" %}
+{% block content %}
+
+<div class="row">
+    {% for album in album_list %}
+    <div class="col-lg-3 col-md-6 py-3">
+        <div class="card mb-3" style="max-width: 300px;">
+            <img class="card-img-top" src="{{album.cover.url}}" style="height: 300px;">
+            <div class="card-body">
+                <h5 class="card-title">{{album.name}}</h5>
+                <ul style="list-style-type:none">
+                    <li>Relase date: {{album.relase_date }} </li>
+                    <li>Genre: {{album.genre}}</li>
+                    <li>Artist: {{album.artist}}</li>
+                </ul>
+                <a href="/album_details/{{album.id}}/" class="btn btn-dark">Songs</a>
+                {% if user.is_superuser %}
+                <a href="/edit_album/{{album.id}}/" class="btn btn-dark">Edit</a>
+                <a href="/delete_album/{{album.id}}/" class="btn btn-dark">Delete</a>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+    <!--    <li><a href="/album_details/{{album.id}}/">{{ album.name }}</a></li>-->
+    <!--    <li><img src="{{album.cover.url}}" width="120"/></li>-->
+    {% endfor %}
+</div>
+{% endblock content %}
